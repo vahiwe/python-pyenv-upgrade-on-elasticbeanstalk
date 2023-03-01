@@ -1,6 +1,6 @@
 # Importing flask module in the project is mandatory
 # An object of Flask class is our WSGI application.
-import os
+import os, sys
 from flask import Flask
 
 # Flask constructor takes the name of
@@ -13,8 +13,10 @@ app = Flask(__name__)
 @app.route('/')
 # ‘/’ URL is bound with hello_world() function.
 def hello_world():
-	default_name = os.getenv('GAMER_NAME', 'World')
-	return 'Hello, {}!'.format(default_name)
+	# Get python version
+  python_version = sys.version
+  default_name = os.getenv('GAMER_NAME', 'World')
+  return 'Hello, {}! I am running on Python {}!'.format(default_name, python_version)
 
 @app.route('/health')
 def health():
